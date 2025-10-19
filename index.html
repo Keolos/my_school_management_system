@@ -1,13 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frontend School Management System Capstone</title>
+    <title>My School Management System</title>
+    <link href="./dist/output.css" rel="stylesheet">
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">My School Management System</h1>
+        <div class="space-x-6">
+          <a href="#features" class="hover:text-yellow-300">Features</a>
+          <a href="#tech" class="hover:text-yellow-300">Tech Stack</a>
+          <a href="#contact" class="hover:text-yellow-300">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+      <h2 class="text-4xl font-bold mb-4">Empowering Schools with Modern Management Tools</h2>
+      <p class="text-lg mb-6">Manage students, teachers, classes, and more—all in one place.</p>
+      <a href="https://github.com/Keolos/my_school_management_system.git" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200">View on GitHub</a>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-16 px-8 bg-white">
+      <h3 class="text-3xl font-semibold text-center mb-12">✨ Key Features</h3>
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition">
+          <h4 class="text-xl font-bold mb-2">Student Management</h4>
+          <p>Track enrollment, performance, and attendance efficiently.</p>
+        </div>
+        <div class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition">
+          <h4 class="text-xl font-bold mb-2">Teacher Management</h4>
+          <p>Assign subjects, manage classes, and review academic reports.</p>
+        </div>
+        <div class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition">
+          <h4 class="text-xl font-bold mb-2">Performance Analytics</h4>
+          <p>Visualize academic progress through real-time charts and dashboards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech" class="py-16 bg-gray-100 text-center">
+      <h3 class="text-3xl font-semibold mb-8">💻 Technology Stack</h3>
+      <p class="max-w-3xl mx-auto text-lg">
+        This project uses <span class="font-semibold">HTML</span>, <span class="font-semibold">CSS</span>,
+        <span class="font-semibold">JavaScript</span>, and <span class="font-semibold">Tailwind CSS</span> for frontend.
+        Backend integration can be added using frameworks like Django or Node.js.
+      </p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 px-8 bg-white text-center">
+      <h3 class="text-3xl font-semibold mb-4">📬 Contact</h3>
+      <p class="text-lg">Created by <span class="font-semibold">Keolos</span></p>
+      <p class="text-lg">Email: <a href="mailto:abdullahmohammednaji@gmail.com" class="text-blue-600 underline">abdullahmohammednaji@gmail.com</a></p>
+      <p class="text-lg mt-4">GitHub: <a href="https://github.com/Keolos" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">Keolos</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-6 text-center">
+      <p>&copy; 2025 My School Management System. All rights reserved.</p>
+    </footer>
   </body>
 </html>

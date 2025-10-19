@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - My School Management System</title>
+    <link href="./dist/output.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">School Dashboard</h1>
+      <div class="space-x-6">
+        <a href="#" class="hover:text-yellow-300">Students</a>
+        <a href="#" class="hover:text-yellow-300">Teachers</a>
+        <a href="#" class="hover:text-yellow-300">Classes</a>
+        <a href="index.html" class="bg-white text-blue-600 px-3 py-1 rounded-lg font-semibold hover:bg-gray-200">Logout</a>
+      </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="max-w-6xl mx-auto mt-12 p-6 grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold text-gray-700 mb-2">Total Students</h3>
+        <p class="text-4xl font-bold text-blue-600">530</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold text-gray-700 mb-2">Active Teachers</h3>
+        <p class="text-4xl font-bold text-blue-600">45</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold text-gray-700 mb-2">Ongoing Classes</h3>
+        <p class="text-4xl font-bold text-blue-600">24</p>
+      </div>
+    </main>
+
+    <!-- Table Section -->
+    <section class="max-w-6xl mx-auto mt-10 p-6 bg-white rounded-xl shadow">
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">Recent Activities</h2>
+      <table class="w-full border border-gray-200 rounded-lg">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="py-3 px-4 text-left">Date</th>
+            <th class="py-3 px-4 text-left">Activity</th>
+            <th class="py-3 px-4 text-left">Performed By</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600">
+          <tr class="border-t hover:bg-gray-50">
+            <td class="py-3 px-4">2025-10-19</td>
+            <td class="py-3 px-4">Added new student record</td>
+            <td class="py-3 px-4">Admin</td>
+          </tr>
+          <tr class="border-t hover:bg-gray-50">
+            <td class="py-3 px-4">2025-10-18</td>
+            <td class="py-3 px-4">Updated teacher profile</td>
+            <td class="py-3 px-4">Principal</td>
+          </tr>
+          <tr class="border-t hover:bg-gray-50">
+            <td class="py-3 px-4">2025-10-17</td>
+            <td class="py-3 px-4">Added new class schedule</td>
+            <td class="py-3 px-4">Teacher</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>
