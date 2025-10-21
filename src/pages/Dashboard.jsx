@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { BookOpen, Calendar, ClipboardCheck, TrendingUp, Users, Award } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { BookOpen, Calendar, ClipboardCheck, TrendingUp, Users, Award, FileText } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 
-export function Dashboard() {
+export default function Dashboard() {
   const { profile } = useAuth();
   const [stats, setStats] = useState({
     totalCourses: 0,
@@ -253,17 +253,7 @@ export function Dashboard() {
   );
 }
 
-function ActionButton({
-  icon: Icon,
-  title,
-  description,
-  color,
-}: {
-  icon: any;
-  title: string;
-  description: string;
-  color: string;
-}) {
+function ActionButton({ icon: Icon, title, description, color }) {
   const colorClasses = {
     blue: 'bg-blue-50 text-blue-600 group-hover:bg-blue-100',
     green: 'bg-green-50 text-green-600 group-hover:bg-green-100',
@@ -284,19 +274,7 @@ function ActionButton({
   );
 }
 
-function ActivityItem({
-  icon: Icon,
-  title,
-  description,
-  time,
-  color,
-}: {
-  icon: any;
-  title: string;
-  description: string;
-  time: string;
-  color: string;
-}) {
+function ActivityItem({ icon: Icon, title, description, time, color }) {
   const colorClasses = {
     blue: 'bg-blue-100 text-blue-600',
     green: 'bg-green-100 text-green-600',
@@ -316,5 +294,3 @@ function ActivityItem({
     </div>
   );
 }
-
-import { FileText } from 'lucide-react';

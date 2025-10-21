@@ -1,42 +1,28 @@
-import { useEffect, useState } from 'react';
-import { Clock, MapPin } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../lib/supabase';
-import { Card, CardContent, CardHeader } from '../components/ui/Card';
+import { useEffect, useState } from "react";
+import { Clock, MapPin } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { supabase } from "../lib/supabase";
+import { Card, CardContent, CardHeader } from "../components/ui/Card";
 
-type TimetableEntry = {
-  id: string;
-  course: {
-    code: string;
-    name: string;
-    teacher?: {
-      full_name: string;
-    };
-  };
-  day_of_week: number;
-  start_time: string;
-  end_time: string;
-  room: string;
-};
+const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-export function Timetable() {
+export default function Timetable() {
   const { profile } = useAuth();
-  const [timetable, setTimetable] = useState<TimetableEntry[]>([]);
+  const [timetable, setTimetable] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (profile) {
       loadTimetable();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
   const loadTimetable = async () => {
     try {
-      if (profile?.role === 'student') {
+      if (profile?.role === "student") {
         const { data, error } = await supabase
-          .from('timetable')
+          .from("timetable")
           .select(`
             *,
             course:courses!inner(
@@ -46,19 +32,19 @@ export function Timetable() {
             )
           `)
           .in(
-            'course_id',
+            "course_id",
             supabase
-              .from('enrollments')
-              .select('course_id')
-              .eq('student_id', profile.id)
-              .eq('status', 'active')
+              .from("enrollments")
+              .select("course_id")
+              .eq("student_id", profile.id)
+              .eq("status", "active")
           );
 
         if (error) throw error;
         setTimetable(data || []);
       } else {
         const { data, error } = await supabase
-          .from('timetable')
+          .from("timetable")
           .select(`
             *,
             course:courses!inner(
@@ -66,37 +52,35 @@ export function Timetable() {
               name
             )
           `)
-          .eq('courses.teacher_id', profile?.id);
+          .eq("courses.teacher_id", profile?.id);
 
         if (error) throw error;
         setTimetable(data || []);
       }
     } catch (error) {
-      console.error('Error loading timetable:', error);
+      console.error("Error loading timetable:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const getTimetableForDay = (dayIndex: number) => {
+  const getTimetableForDay = (dayIndex) => {
     return timetable
       .filter((entry) => entry.day_of_week === dayIndex)
       .sort((a, b) => a.start_time.localeCompare(b.start_time));
   };
 
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
+  const formatTime = (time) => {
+    const [hours, minutes] = time.split(":");
     const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const ampm = hour >= 12 ? "PM" : "AM";
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
+      <div className="text-center py-12 text-gray-500">Loading timetable...</div>
     );
   }
 
@@ -115,11 +99,13 @@ export function Timetable() {
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Clock className="w-8 h-8 text-gray-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No classes scheduled</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              No classes scheduled
+            </h3>
             <p className="text-gray-600">
-              {profile?.role === 'student'
-                ? 'Your class schedule will appear here once you enroll in courses.'
-                : 'Your teaching schedule will appear here once classes are scheduled.'}
+              {profile?.role === "student"
+                ? "Your class schedule will appear here once you enroll in courses."
+                : "Your teaching schedule will appear here once classes are scheduled."}
             </p>
           </CardContent>
         </Card>
@@ -131,8 +117,8 @@ export function Timetable() {
             const isToday = new Date().getDay() === dayIndex;
 
             return (
-              <Card key={day} className={isToday ? 'ring-2 ring-blue-500' : ''}>
-                <CardHeader className={isToday ? 'bg-blue-50' : ''}>
+              <Card key={day} className={isToday ? "ring-2 ring-blue-500" : ""}>
+                <CardHeader className={isToday ? "bg-blue-50" : ""}>
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-gray-900">{day}</h3>
                     {isToday && (
@@ -175,7 +161,7 @@ export function Timetable() {
                             <MapPin className="w-4 h-4" />
                             <span>Room {entry.room}</span>
                           </div>
-                          {profile?.role === 'student' && entry.course.teacher && (
+                          {profile?.role === "student" && entry.course.teacher && (
                             <div className="flex items-center space-x-2 text-sm text-gray-700 mt-2 pt-2 border-t border-blue-200">
                               <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
                                 {entry.course.teacher.full_name.charAt(0)}

@@ -1,5 +1,5 @@
 // src/components/admin/SubjectManager.tsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabaseClient';
 
 export default function SubjectManager() {
